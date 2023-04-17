@@ -22,7 +22,7 @@ export default function Home() {
         </div>
 
         {/* contact */}
-        <div>
+        <div className="text-sm">
           <div>Name : Waruntorn Paonil</div>
           <div>Email : Ink.Waruntorn@Paonil.com</div>
           <div>Mobile : 089-999-9999</div>
