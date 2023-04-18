@@ -15,7 +15,7 @@ const range: string = "Form Responses 1!A:I";
 const spreadsheetId = process.env.SHEET_ID;
 
 interface Ids {
-  [key: string]: any;
+  [key: string]: number;
 }
 
 export const getIds = async () => {
@@ -28,7 +28,7 @@ export const getIds = async () => {
   // id by First + Last Name
   let ids: Ids = {};
   if (res.data.values) {
-    ids = res.data.values.reduce((acc, el, idx) => {
+    ids = res.data.values.reduce((acc: { [key: string]: number }, el, idx) => {
       acc[el.join("-").toLocaleLowerCase()] = idx;
       return acc;
     }, {});
@@ -86,3 +86,19 @@ export const getInfo = async (infoId: number) => {
 
   return info;
 };
+
+// interface DataValue {
+//   [key: string]: string;
+// }
+
+// const dataValues: DataValue[] =
+//   res.data.values?.slice(1).map((row) => ({
+//     "First Name": row[0],
+//     "Last Name": row[1]
+//   })) || [];
+
+// const ids = dataValues.reduce((acc: { [key: string]: number }, el, idx) => {
+//   const id = `${el["First Name"].toLocaleLowerCase()}-${el["Last Name"].toLocaleLowerCase()}`;
+//   acc[id] = idx + 1;
+//   return acc;
+// }, {});
