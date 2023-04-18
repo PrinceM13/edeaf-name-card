@@ -1,10 +1,28 @@
-export default function Contact() {
+import {
+  EMAIL,
+  FACEBOOK,
+  FIRST_NAME,
+  INSTAGRAM,
+  LAST_NAME,
+  LINE_ID,
+  MOBILE
+} from "@/config/constant";
+
+export default function Contact({ children }: any) {
   return (
-    <div className="text-sm">
-      <div>Name : Waruntorn Paonil</div>
-      <div>Email : Ink.Waruntorn@Paonil.com</div>
-      <div>Mobile : 089-999-9999</div>
-      <div>Line Id : Inksy1994</div>
-    </div>
+    <>
+      {children && (
+        <div className="text-sm">
+          <div>
+            Name : {children[FIRST_NAME]} {children[LAST_NAME]}
+          </div>
+          <div>Email : {children[EMAIL]}</div>
+          {/* <div>Mobile : {children[MOBILE]}</div> */}
+          {/* <div>Line Id : {children[LINE_ID]}</div> */}
+          {/* <div>Facebook : {children[FACEBOOK]}</div> */}
+          <div>Instagram : {children[INSTAGRAM]}</div>
+        </div>
+      )}
+    </>
   );
 }

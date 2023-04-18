@@ -1,6 +1,6 @@
 import { ChangeEvent, useRef, useState } from "react";
 
-export default function SignName() {
+export default function SignName({ children }: any) {
   const [file, setFile] = useState<File | null>(null);
   const inputVideo = useRef<HTMLInputElement>(null);
 
@@ -42,7 +42,7 @@ export default function SignName() {
             />
           )}
         </div>
-        {file && <div className="text-xl text-[#5384ed] rounded-lg px-2 py-1">Inksy</div>}
+        {file && <div className="text-xl text-[#5384ed] rounded-lg px-2 py-1">{children}</div>}
       </div>
     </div>
   );

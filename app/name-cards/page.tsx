@@ -46,7 +46,10 @@ export default function NameCards() {
 
   return (
     <CardFrame>
-      <SignName />
+      <img
+        className="rounded-lg"
+        src="https://res.cloudinary.com/dhr35jlbz/image/upload/v1681845469/edeaf/name-card/cheer-up-lg_bwooam.png"
+      />
       {infos.map((el: Info, idx: number) => (
         <div
           key={idx}
