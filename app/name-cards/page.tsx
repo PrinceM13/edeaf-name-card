@@ -40,6 +40,7 @@ export default function NameCards() {
     const fetchAllInfos = async () => {
       const res = await axios.get(`${API_URL}/google-sheet`);
       setInfos(res.data);
+      console.log("check ----> ", res.data);
     };
     fetchAllInfos();
   }, []);
