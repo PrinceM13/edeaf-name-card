@@ -38,12 +38,17 @@ export default function NameCards() {
 
   useEffect(() => {
     const fetchAllInfos = async () => {
-      const res = await axios.get(`${API_URL}/google-sheet?${Math.random()}`);
+      const res = await axios.get(`${API_URL}/google-sheet`);
       setInfos(res.data);
       setReload(false);
     };
     isReload && fetchAllInfos();
   }, [isReload]);
+
+  const handleReload = async () => {
+    const res = await axios.get(`${API_URL}/google-sheet`);
+    setInfos(res.data);
+  };
 
   return (
     <CardFrame>
@@ -70,6 +75,7 @@ export default function NameCards() {
           </div>
         ))
       )}
+      <button onClick={handleReload}>Reload</button>
     </CardFrame>
   );
 }
