@@ -1,4 +1,4 @@
-import { getInfo } from "@/utils/google-sheet";
+import { getInfo } from "../../../../../utils/google-sheet";
 
 export async function GET(request: Request, context: { params: any }) {
   // get params
