@@ -6,5 +6,6 @@ export async function GET(request: Request, context: { params: any }) {
     params: { infoId }
   } = context;
   const info = await getInfo(infoId);
+  console.log("api get by id ---> ", info);
   return new Response(JSON.stringify(info));
 }

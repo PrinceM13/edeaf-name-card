@@ -43,6 +43,7 @@ export const getInfos = async () => {
   const res = await googleSheetInstance.spreadsheets.values.get({ spreadsheetId, range });
   const columnName = res.data.values?.shift();
   let infos;
+  console.log("getInfos  values ---> ", res.data.values);
 
   if (columnName) {
     infos = res.data.values?.reduce((acc, el) => {
@@ -54,6 +55,7 @@ export const getInfos = async () => {
       return acc;
     }, []);
   }
+  console.log("getInfos  infos ---> ", infos);
 
   return infos;
 };
@@ -83,6 +85,7 @@ export const getInfo = async (infoId: number) => {
       [FACEBOOK]: res.data.values[0][8]
     };
   }
+  console.log("getInfo  info ---> ", info);
 
   return info;
 };
