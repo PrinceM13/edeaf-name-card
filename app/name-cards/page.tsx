@@ -34,14 +34,16 @@ interface Info {
 export default function NameCards() {
   const router = useRouter();
   const [infos, setInfos] = useState<Info[]>([]);
+  const [isReload, setReload] = useState(true);
 
   useEffect(() => {
     const fetchAllInfos = async () => {
       const res = await axios.get(`${API_URL}/google-sheet?${Math.random()}`);
       setInfos(res.data);
+      setReload(false);
     };
-    fetchAllInfos();
-  }, []);
+    isReload && fetchAllInfos();
+  }, [isReload]);
 
   return (
     <CardFrame>
