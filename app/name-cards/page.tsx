@@ -4,7 +4,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import CardFrame from "@/components/CardFrame";
-import SignName from "@/components/SignName";
 import { useRouter } from "next/navigation";
 import {
   TIMESTAMP,
@@ -43,6 +42,7 @@ export default function NameCards() {
       console.log("check ----> ", res.data);
     };
     fetchAllInfos();
+    console.log("useEffect");
   }, []);
 
   return (
