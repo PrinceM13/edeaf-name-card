@@ -1,5 +1,3 @@
-"use client";
-
 import { ChangeEvent, useRef, useState } from "react";
 
 export default function SignName({ children }: any) {

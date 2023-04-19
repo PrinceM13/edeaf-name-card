@@ -1,5 +1,3 @@
-"use client";
-
 import { NICK_NAME } from "@/config/constant";
 import CardFrame from "./CardFrame";
 import Contact from "./Contact";

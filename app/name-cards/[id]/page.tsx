@@ -34,7 +34,9 @@ export default function NameCardById({ params }: any) {
   const [info, setInfo] = useState<Info>();
   useEffect(() => {
     const fetchAllInfos = async () => {
-      const res = await axios.get(`${API_URL}/google-sheet/name-cards/${params.id}`);
+      const res = await axios.get(
+        `${API_URL}/google-sheet/name-cards/${params.id}?${Math.random()}`
+      );
       setInfo(res.data);
     };
     fetchAllInfos();

@@ -37,12 +37,10 @@ export default function NameCards() {
 
   useEffect(() => {
     const fetchAllInfos = async () => {
-      const res = await axios.get(`${API_URL}/google-sheet`);
+      const res = await axios.get(`${API_URL}/google-sheet?${Math.random()}`);
       setInfos(res.data);
-      console.log("check ----> ", res.data);
     };
     fetchAllInfos();
-    console.log("useEffect");
   }, []);
 
   return (
