@@ -16,7 +16,7 @@ export default function SignName({ children }: any) {
         src="https://res.cloudinary.com/dhr35jlbz/image/upload/v1681792641/edeaf/name-card/frames/edeaf-frame_k1y5kx.png"
         className="rounded-lg"
       />
-      <div className="absolute top-[75px] left-[34px] flex flex-col items-center gap-3">
+      <div className="absolute top-[75px] left-[44px] flex flex-col items-center gap-3">
         <input
           type="file"
           ref={inputVideo}
@@ -42,7 +42,7 @@ export default function SignName({ children }: any) {
             />
           )}
         </div>
-        {file && <div className="text-xl text-[#5384ed] rounded-lg px-2 py-1">{children}</div>}
+        {file && <div className="text-4xl text-[#5384ed] rounded-lg px-2 py-1">{children}</div>}
       </div>
     </div>
   );

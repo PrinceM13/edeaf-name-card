@@ -7,7 +7,11 @@ export default function NameCard({ children }: any) {
   return (
     <CardFrame>
       <SignName>{children && children[NICK_NAME]}</SignName>
-      <Contact>{children}</Contact>
+      {!children ? (
+        <div className="text-center text-2xl">Loading...</div>
+      ) : (
+        <Contact>{children}</Contact>
+      )}
     </CardFrame>
   );
 }

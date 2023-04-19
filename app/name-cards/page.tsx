@@ -50,21 +50,25 @@ export default function NameCards() {
         className="rounded-lg"
         src="https://res.cloudinary.com/dhr35jlbz/image/upload/v1681845469/edeaf/name-card/cheer-up-lg_bwooam.png"
       />
-      {infos.map((el: Info, idx: number) => (
-        <div
-          key={idx}
-          onClick={() =>
-            router.push(
-              `/name-cards/${el[FIRST_NAME].toLocaleLowerCase()}-${el[
-                LAST_NAME
-              ].toLocaleLowerCase()}`
-            )
-          }
-          className="bg-[#cbe9f6] px-2 py-1 rounded-lg text-center cursor-pointer"
-        >
-          {el[NICK_NAME]}
-        </div>
-      ))}
+      {infos.length === 0 ? (
+        <div className="text-center text-2xl">Loading...</div>
+      ) : (
+        infos.map((el: Info, idx: number) => (
+          <div
+            key={idx}
+            onClick={() =>
+              router.push(
+                `/name-cards/${el[FIRST_NAME].toLocaleLowerCase()}-${el[
+                  LAST_NAME
+                ].toLocaleLowerCase()}`
+              )
+            }
+            className="bg-[#cbe9f6] text-2xl px-2 py-1 rounded-lg text-center cursor-pointer"
+          >
+            {el[NICK_NAME]}
+          </div>
+        ))
+      )}
     </CardFrame>
   );
 }

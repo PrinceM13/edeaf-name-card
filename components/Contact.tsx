@@ -12,15 +12,22 @@ export default function Contact({ children }: any) {
   return (
     <>
       {children && (
-        <div className="text-sm">
+        <div className="text-xl">
           <div>
-            Name : {children[FIRST_NAME]} {children[LAST_NAME]}
+            Name :{" "}
+            <span className="font-mono text-xs">
+              {children[FIRST_NAME]} {children[LAST_NAME]}
+            </span>
           </div>
-          <div>Email : {children[EMAIL]}</div>
+          <div>
+            Email : <span className="font-mono text-xs">{children[EMAIL]}</span>
+          </div>
           {/* <div>Mobile : {children[MOBILE]}</div> */}
           {/* <div>Line Id : {children[LINE_ID]}</div> */}
           {/* <div>Facebook : {children[FACEBOOK]}</div> */}
-          <div>Instagram : {children[INSTAGRAM]}</div>
+          <div>
+            Instagram : <span className="font-mono text-xs">{children[INSTAGRAM]}</span>
+          </div>
         </div>
       )}
     </>

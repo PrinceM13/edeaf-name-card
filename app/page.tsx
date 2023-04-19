@@ -10,5 +10,5 @@ export default function Home() {
     router.push("/name-cards");
   }, []);
 
-  return <div>Home</div>;
+  return <></>;
 }

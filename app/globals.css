@@ -18,7 +18,8 @@
 
 body {
   background-color: gray;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  font-family: "edeaf-font", sans-serif;
   /* color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -26,4 +27,9 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
+}
+
+@font-face {
+  font-family: "edeaf-font";
+  src: url("/fonts/EdeafbyPA.ttf") format("truetype");
 }
