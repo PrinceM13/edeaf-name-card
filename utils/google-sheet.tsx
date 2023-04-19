@@ -61,7 +61,7 @@ export const getInfos = async () => {
 };
 
 // single info (specific with infoId)
-export const getInfo = async (infoId: number) => {
+export const getInfo = async (infoId: string) => {
   const ids = await getIds();
   const rowNumber = 1 + ids[infoId];
   const googleSheetInstance = await googleSheet();
