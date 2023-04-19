@@ -1,4 +1,4 @@
-import { getInfos } from "../../../utils/google-sheet";
+import { getInfos } from "../../../../utils/google-sheet";
 
 export async function GET() {
   const infos = await getInfos();
