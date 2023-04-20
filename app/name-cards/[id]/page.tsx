@@ -33,13 +33,11 @@ interface Info {
 export default function NameCardById({ params }: any) {
   const [info, setInfo] = useState<Info>();
   useEffect(() => {
-    const fetchAllInfos = async () => {
-      const res = await axios.get(
-        `${API_URL}/google-sheet/name-cards/${params.id}?${Math.random()}`
-      );
+    const fetchInfo = async () => {
+      const res = await axios.get(`${API_URL}/google-sheet/name-cards/${params.id}`);
       setInfo(res.data);
     };
-    fetchAllInfos();
+    fetchInfo();
   }, []);
   return <NameCard>{info}</NameCard>;
 }
