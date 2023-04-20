@@ -45,7 +45,8 @@ export default function NameCards() {
   }, []);
 
   return (
-    <CardFrame>
+    // <CardFrame>
+    <>
       <img
         className="rounded-lg"
         src="https://res.cloudinary.com/dhr35jlbz/image/upload/v1681845469/edeaf/name-card/cheer-up-lg_bwooam.png"
@@ -65,6 +66,7 @@ export default function NameCards() {
           {el[NICK_NAME]}
         </div>
       ))}
-    </CardFrame>
+    </>
+    // </CardFrame>
   );
 }
