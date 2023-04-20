@@ -45,11 +45,6 @@ export default function NameCards() {
     isReload && fetchAllInfos();
   }, [isReload]);
 
-  const handleReload = async () => {
-    const res = await axios.get(`${API_URL}/google-sheet/name-cards`);
-    setInfos(res.data);
-  };
-
   return (
     <CardFrame>
       <img
@@ -75,7 +70,6 @@ export default function NameCards() {
           </div>
         ))
       )}
-      <button onClick={handleReload}>Reload</button>
     </CardFrame>
   );
 }
