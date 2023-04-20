@@ -3,7 +3,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-import CardFrame from "@/components/CardFrame";
+// import CardFrame from "@/components/CardFrame";
 import { useRouter } from "next/navigation";
 import {
   TIMESTAMP,
@@ -16,8 +16,6 @@ import {
   INSTAGRAM,
   FACEBOOK
 } from "../../config/constant";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 interface Info {
   [TIMESTAMP]: string;
@@ -32,6 +30,7 @@ interface Info {
 }
 
 export default function NameCards() {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
   const [infos, setInfos] = useState<Info[]>([]);
   const [isReload, setReload] = useState(true);
@@ -79,3 +78,11 @@ export default function NameCards() {
     </CardFrame>
   );
 }
+
+const CardFrame = ({ children }: any) => {
+  return (
+    <div className="p-4 mx-auto mt-20 w-[320px] rounded-xl bg-[#ebf6fc] shadow-gray-800 shadow-lg flex flex-col gap-4">
+      {children}
+    </div>
+  );
+};

@@ -16,8 +16,6 @@ import {
   TIMESTAMP
 } from "@/config/constant";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 interface Info {
   [TIMESTAMP]: string;
   [FIRST_NAME]: string;
@@ -31,6 +29,7 @@ interface Info {
 }
 
 export default function NameCardById({ params }: any) {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const [info, setInfo] = useState<Info>();
   useEffect(() => {
     const fetchInfo = async () => {
