@@ -28,12 +28,13 @@ interface Info {
   [FACEBOOK]: string;
 }
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function NameCardById({ params }: any) {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const [info, setInfo] = useState<Info>();
   useEffect(() => {
     const fetchInfo = async () => {
-      const res = await axios.get(`${API_URL}/google-sheet/name-cards/${params.id}`);
+      const res = await axios.get(`${API_URL}/google-sheet/name-cards/info/${params.id}`);
       setInfo(res.data);
     };
     fetchInfo();

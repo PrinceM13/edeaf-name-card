@@ -3,7 +3,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-// import CardFrame from "@/components/CardFrame";
+import CardFrame from "@/components/CardFrame";
 import { useRouter } from "next/navigation";
 import {
   TIMESTAMP,
@@ -29,15 +29,16 @@ interface Info {
   [FACEBOOK]: string;
 }
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function NameCards() {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
   const [infos, setInfos] = useState<Info[]>([]);
   const [isReload, setReload] = useState(true);
 
   useEffect(() => {
     const fetchAllInfos = async () => {
-      const res = await axios.get(`${API_URL}/google-sheet/name-cards`);
+      const res = await axios.get(`${API_URL}/google-sheet/name-cards/infos/dummy`);
       setInfos(res.data);
       setReload(false);
     };
@@ -78,11 +79,3 @@ export default function NameCards() {
     </CardFrame>
   );
 }
-
-const CardFrame = ({ children }: any) => {
-  return (
-    <div className="p-4 mx-auto mt-20 w-[320px] rounded-xl bg-[#ebf6fc] shadow-gray-800 shadow-lg flex flex-col gap-4">
-      {children}
-    </div>
-  );
-};
