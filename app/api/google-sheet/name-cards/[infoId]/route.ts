@@ -1,4 +1,4 @@
-import { getInfo } from "../../../../../utils/google-sheet";
+import { getInfo, getInfos } from "../../../../../utils/google-sheet";
 
 export async function GET(request: Request, context: { params: any }) {
   // get params
@@ -6,6 +6,7 @@ export async function GET(request: Request, context: { params: any }) {
     params: { infoId }
   } = context;
   const info = await getInfo(infoId);
-  console.log("api get by id ---> ", info);
+  console.log("api get by id ---> ", info); // debug
+  const yyy = await getInfos(); // debug
   return new Response(JSON.stringify(info));
 }
