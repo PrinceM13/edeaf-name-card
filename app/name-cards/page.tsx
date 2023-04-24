@@ -18,7 +18,13 @@ import {
   AdvancedVideo
 } from "@cloudinary/react";
 
-import { CldImage, CldOgImage, CldUploadButton, CldUploadWidget } from "next-cloudinary";
+import {
+  CldImage,
+  CldOgImage,
+  CldUploadButton,
+  CldUploadWidget,
+  CldVideoPlayer
+} from "next-cloudinary";
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 const apiSecret = process.env.NEXT_PUBLIC_API_SECRET;
 const cloudName = process.env.NEXT_PUBLIC_CLOUD_NAME;
@@ -201,8 +207,10 @@ export default function NameCards() {
     // console.log("lolllllll ------> ", cloudinaryVideoXXX);
   };
 
+  const [uploadedVideo, setUploadedVideo] = useState("");
   const onUploadCheck = async (result: any, widget: any) => {
     console.log("result --> ", result.info.public_id);
+    setUploadedVideo(result.info.public_id);
     console.log("widget --> ", widget);
   };
 
@@ -218,7 +226,7 @@ export default function NameCards() {
         twitterTitle="My Social Card"
       /> */}
       <CldImage alt="wow" src="edeaf/name-card/cheer-up-lg_bwooam" width="200" height="200" />
-      <CldUploadWidget uploadPreset="my-name-card" onUpload={onUploadCheck}>
+      <CldUploadWidget uploadPreset="edeaf-name-card" onUpload={onUploadCheck}>
         {({ open }) => {
           function handleOnClick(e: any) {
             e.preventDefault();
@@ -228,6 +236,28 @@ export default function NameCards() {
           return <button onClick={handleOnClick}>Upload an Image</button>;
         }}
       </CldUploadWidget>
+      {uploadedVideo && (
+        <CldVideoPlayer
+          width="1920"
+          height="1080"
+          src={uploadedVideo}
+          autoPlay="on-scroll" // default = 'never'
+          loop
+          muted
+        />
+      )}
+      <div>kkk</div>
+      <div>kkk</div>
+      <div>kkk</div>
+      <div>kkk</div>
+      <div>kkk</div>
+      <div>kkk</div>
+      <div>kkk</div>
+      <div>kkk</div>
+      <div>kkk</div>
+      <div>kkk</div>
+      <div>kkk</div>
+      <div>kkk</div>
       <div>kkk</div>
       <AdvancedVideo cldVid={videoUrl} autoPlay loop muted />
       <CldUploadButton uploadPreset="/edeaf/test"></CldUploadButton>
