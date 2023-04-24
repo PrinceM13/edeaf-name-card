@@ -225,7 +225,23 @@ export default function NameCards() {
         alt="video"
         twitterTitle="My Social Card"
       /> */}
-      <CldImage alt="wow" src="edeaf/name-card/cheer-up-lg_bwooam" width="200" height="200" />
+      <CldImage
+        alt="wow"
+        src="edeaf/name-card/cheer-up-lg_bwooam"
+        width="200"
+        height="200"
+        overlays={[
+          {
+            text: {
+              color: "white",
+              fontFamily: "Source Sans Pro",
+              fontSize: 200,
+              fontWeight: "bold",
+              text: "Next Cloudinary"
+            }
+          }
+        ]}
+      />
       <CldUploadWidget uploadPreset="edeaf-name-card" onUpload={onUploadCheck}>
         {({ open }) => {
           function handleOnClick(e: any) {
@@ -244,6 +260,15 @@ export default function NameCards() {
           autoPlay="on-scroll" // default = 'never'
           loop
           muted
+          // overlays={[{
+          //   text: {
+          //     color: 'white',
+          //     fontFamily: 'Source Sans Pro',
+          //     fontSize: 200,
+          //     fontWeight: 'bold',
+          //     text: 'Next Cloudinary'
+          //   }
+          // }]}
         />
       )}
       <div>kkk</div>
