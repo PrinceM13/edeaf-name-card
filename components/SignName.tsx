@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { CldUploadWidget } from "next-cloudinary";
 
@@ -22,13 +22,14 @@ const apiSecret = process.env.NEXT_PUBLIC_API_SECRET;
 const cloudName = process.env.NEXT_PUBLIC_CLOUD_NAME;
 
 export default function SignName({ children }: any) {
+  const [publicId, setPublicId] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
   const [duration, setDuration] = useState(1);
 
   const uploadButton = useRef<HTMLButtonElement>(null);
 
   const handleUpload = async (result: any) => {
-    setVideoUrl(result.info.public_id);
+    setPublicId(result.info.public_id);
     setDuration(result.info.duration);
   };
 
@@ -40,7 +41,7 @@ export default function SignName({ children }: any) {
     .videoEdit(trim().duration(duration))
     .overlay(
       source(
-        video(videoUrl).transformation(
+        video(publicId).transformation(
           new Transformation().resize(scale().width(620).height(620)).roundCorners(byRadius(20))
         )
       ).position(new Position().offsetY(-0.05).gravity(compass(center())))
@@ -52,10 +53,17 @@ export default function SignName({ children }: any) {
     )
     .format("mp4");
 
+  useEffect(() => {
+    const downloadLink = cloudinaryVideo.toURL().replace("/upload/", "/upload/fl_attachment/"); // change to download link using /fl_attachment/
+    setVideoUrl(downloadLink);
+  }, [cloudinaryVideo.toURL()]);
+
   return (
     <div className="relative">
-      {videoUrl ? (
-        <AdvancedVideo className="rounded-lg" cldVid={cloudinaryVideo} autoPlay loop muted />
+      {publicId ? (
+        <a href={videoUrl}>
+          <AdvancedVideo className="rounded-lg" cldVid={cloudinaryVideo} autoPlay loop muted />
+        </a>
       ) : (
         <>
           <img
