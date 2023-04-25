@@ -10,9 +10,10 @@ import { Position } from "@cloudinary/url-gen/qualifiers";
 import { video, text } from "@cloudinary/url-gen/qualifiers/source";
 import { compass } from "@cloudinary/url-gen/qualifiers/gravity";
 import { center } from "@cloudinary/url-gen/qualifiers/compass";
-import { scale } from "@cloudinary/url-gen/actions/resize";
+import { scale, fill } from "@cloudinary/url-gen/actions/resize";
 
 import { trim } from "@cloudinary/transformation-builder-sdk/actions/videoEdit";
+import { useRouter } from "next/navigation";
 
 const { source } = Actions.Overlay;
 const { byRadius } = Actions.RoundCorners;
@@ -42,7 +43,8 @@ export default function SignName({ children }: any) {
     .overlay(
       source(
         video(publicId).transformation(
-          new Transformation().resize(scale().width(620).height(620)).roundCorners(byRadius(20))
+          new Transformation().resize(fill().width(620).height(620)).roundCorners(byRadius(20))
+          // new Transformation().resize(scale().width(620).height(620)).roundCorners(byRadius(20))
         )
       ).position(new Position().offsetY(-0.05).gravity(compass(center())))
     )
@@ -53,6 +55,24 @@ export default function SignName({ children }: any) {
     )
     .format("mp4");
 
+  const router = useRouter();
+  const handleDownload = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = ("0" + (now.getMonth() + 1)).slice(-2); // add leading zero if needed
+    const day = ("0" + now.getDate()).slice(-2); // add leading zero if needed
+    const hour = ("0" + now.getHours()).slice(-2); // add leading zero if needed
+    const minute = ("0" + now.getMinutes()).slice(-2); // add leading zero if needed
+    const second = ("0" + now.getSeconds()).slice(-2); // add leading zero if needed
+    const formattedDate = `${month}${day}${year}-h${hour}m${minute}s${second}`;
+
+    const downloadLinkWithName = videoUrl.replace(
+      "/upload/fl_attachment/",
+      `/upload/fl_attachment:edeaf-sign-name-${formattedDate}/`
+    ); // assign name from date-time
+    router.push(downloadLinkWithName);
+  };
+
   useEffect(() => {
     const downloadLink = cloudinaryVideo.toURL().replace("/upload/", "/upload/fl_attachment/"); // change to download link using /fl_attachment/
     setVideoUrl(downloadLink);
@@ -61,9 +81,14 @@ export default function SignName({ children }: any) {
   return (
     <div className="relative">
       {publicId ? (
-        <a href={videoUrl}>
-          <AdvancedVideo className="rounded-lg" cldVid={cloudinaryVideo} autoPlay loop muted />
-        </a>
+        <AdvancedVideo
+          onClick={handleDownload}
+          className="rounded-lg cursor-pointer"
+          cldVid={cloudinaryVideo}
+          autoPlay
+          loop
+          muted
+        />
       ) : (
         <>
           <img
