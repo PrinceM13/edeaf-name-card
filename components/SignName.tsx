@@ -10,7 +10,7 @@ import { Position } from "@cloudinary/url-gen/qualifiers";
 import { video, text } from "@cloudinary/url-gen/qualifiers/source";
 import { compass } from "@cloudinary/url-gen/qualifiers/gravity";
 import { center } from "@cloudinary/url-gen/qualifiers/compass";
-import { scale } from "@cloudinary/url-gen/actions/resize";
+import { scale, fill } from "@cloudinary/url-gen/actions/resize";
 
 import { trim } from "@cloudinary/transformation-builder-sdk/actions/videoEdit";
 
@@ -42,7 +42,8 @@ export default function SignName({ children }: any) {
     .overlay(
       source(
         video(publicId).transformation(
-          new Transformation().resize(scale().width(620).height(620)).roundCorners(byRadius(20))
+          new Transformation().resize(fill().width(620).height(620)).roundCorners(byRadius(20))
+          // new Transformation().resize(scale().width(620).height(620)).roundCorners(byRadius(20))
         )
       ).position(new Position().offsetY(-0.05).gravity(compass(center())))
     )
