@@ -7,3 +7,5 @@ export const MOBILE = "Mobile";
 export const LINE_ID = "Line Id";
 export const INSTAGRAM = "Instagram";
 export const FACEBOOK = "Facebook";
+export const VIDEO = "Video";
+export const DURATION = "Duration";

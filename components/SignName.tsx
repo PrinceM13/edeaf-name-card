@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
+import axios from "axios";
+
 import { CldUploadWidget } from "next-cloudinary";
 
 import { AdvancedVideo } from "@cloudinary/react";
@@ -14,6 +16,7 @@ import { scale, fill } from "@cloudinary/url-gen/actions/resize";
 
 import { trim } from "@cloudinary/transformation-builder-sdk/actions/videoEdit";
 import { useRouter } from "next/navigation";
+import { DURATION, FIRST_NAME, LAST_NAME, VIDEO } from "@/config/constant";
 
 const { source } = Actions.Overlay;
 const { byRadius } = Actions.RoundCorners;
@@ -22,7 +25,9 @@ const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 const apiSecret = process.env.NEXT_PUBLIC_API_SECRET;
 const cloudName = process.env.NEXT_PUBLIC_CLOUD_NAME;
 
-export default function SignName({ children }: any) {
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+export default function SignName({ children, info }: any) {
   const [publicId, setPublicId] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
   const [duration, setDuration] = useState(1);
@@ -30,6 +35,16 @@ export default function SignName({ children }: any) {
   const uploadButton = useRef<HTMLButtonElement>(null);
 
   const handleUpload = async (result: any) => {
+    const id = `${info[FIRST_NAME].toLocaleLowerCase()}-${info[LAST_NAME].toLocaleLowerCase()}`;
+    const newInfo = {
+      ...info,
+      [VIDEO]: result.info.public_id,
+      [DURATION]: String(result.info.duration)
+    };
+
+    // update google sheet
+    await axios.patch(`${API_URL}/google-sheet/name-cards/info/${id}`, newInfo);
+
     setPublicId(result.info.public_id);
     setDuration(result.info.duration);
   };
@@ -77,6 +92,13 @@ export default function SignName({ children }: any) {
     const downloadLink = cloudinaryVideo.toURL().replace("/upload/", "/upload/fl_attachment/"); // change to download link using /fl_attachment/
     setVideoUrl(downloadLink);
   }, [cloudinaryVideo.toURL()]);
+
+  useEffect(() => {
+    if (info[VIDEO]) {
+      setDuration(info[DURATION]);
+      setPublicId(info[VIDEO]);
+    }
+  }, [info[VIDEO]]);
 
   return (
     <div className="relative">
