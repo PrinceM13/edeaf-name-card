@@ -22,7 +22,7 @@ const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 const apiSecret = process.env.NEXT_PUBLIC_API_SECRET;
 const cloudName = process.env.NEXT_PUBLIC_CLOUD_NAME;
 
-export default function SignName({ children }: any) {
+export default function SignName({ children, isVideoAvailable, durationTime }: any) {
   const [publicId, setPublicId] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
   const [duration, setDuration] = useState(1);
@@ -77,6 +77,13 @@ export default function SignName({ children }: any) {
     const downloadLink = cloudinaryVideo.toURL().replace("/upload/", "/upload/fl_attachment/"); // change to download link using /fl_attachment/
     setVideoUrl(downloadLink);
   }, [cloudinaryVideo.toURL()]);
+
+  useEffect(() => {
+    if (isVideoAvailable) {
+      setDuration(Number(durationTime));
+      setPublicId(isVideoAvailable);
+    }
+  }, [isVideoAvailable]);
 
   return (
     <div className="relative">

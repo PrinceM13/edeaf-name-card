@@ -1,4 +1,5 @@
 import {
+  DURATION,
   EMAIL,
   FACEBOOK,
   FIRST_NAME,
@@ -7,11 +8,12 @@ import {
   LINE_ID,
   MOBILE,
   NICK_NAME,
-  TIMESTAMP
+  TIMESTAMP,
+  VIDEO
 } from "@/config/constant";
 import { googleSheet } from "../config/google";
 
-const range: string = "Form Responses 1!A:I";
+const range: string = "Form Responses 1!A:K";
 const spreadsheetId = process.env.SHEET_ID;
 
 interface Ids {
@@ -80,7 +82,9 @@ export const getInfo = async (infoId: string) => {
       [MOBILE]: res.data.values[0][5],
       [LINE_ID]: res.data.values[0][6],
       [INSTAGRAM]: res.data.values[0][7],
-      [FACEBOOK]: res.data.values[0][8]
+      [FACEBOOK]: res.data.values[0][8],
+      [VIDEO]: res.data.values[0][9],
+      [DURATION]: res.data.values[0][10]
     };
   }
 
