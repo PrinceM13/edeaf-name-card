@@ -91,6 +91,66 @@ export const getInfo = async (infoId: string) => {
   return info;
 };
 
+// update info
+export const updateInfo = async (infoId: string, body: any) => {
+  const ids = await getIds();
+  const rowIndex = ids[infoId];
+  const googleSheetInstance = await googleSheet();
+
+  await googleSheetInstance.spreadsheets.batchUpdate({
+    spreadsheetId,
+    requestBody: {
+      requests: [
+        {
+          updateCells: {
+            rows: [
+              {
+                values: [
+                  {
+                    userEnteredValue: { stringValue: body[TIMESTAMP] }
+                  },
+                  {
+                    userEnteredValue: { stringValue: body[FIRST_NAME] }
+                  },
+                  {
+                    userEnteredValue: { stringValue: body[LAST_NAME] }
+                  },
+                  {
+                    userEnteredValue: { stringValue: body[NICK_NAME] }
+                  },
+                  {
+                    userEnteredValue: { stringValue: body[EMAIL] }
+                  },
+                  {
+                    userEnteredValue: { stringValue: body[MOBILE] }
+                  },
+                  {
+                    userEnteredValue: { stringValue: body[LINE_ID] }
+                  },
+                  {
+                    userEnteredValue: { stringValue: body[INSTAGRAM] }
+                  },
+                  {
+                    userEnteredValue: { stringValue: body[FACEBOOK] }
+                  },
+                  {
+                    userEnteredValue: { stringValue: body[VIDEO] }
+                  },
+                  {
+                    userEnteredValue: { stringValue: body[DURATION] }
+                  }
+                ]
+              }
+            ],
+            fields: "userEnteredValue",
+            start: { rowIndex, sheetId: 280112067 } // sheetId: 0, columnIndex: 0 <-- use as offset column
+          }
+        }
+      ]
+    }
+  });
+};
+
 // interface DataValue {
 //   [key: string]: string;
 // }
