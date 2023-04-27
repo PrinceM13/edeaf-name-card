@@ -49,12 +49,13 @@ export default function NameCards() {
       (el) => el[EMAIL].toLocaleLowerCase() === email.toLocaleLowerCase()
     );
 
-    // set nick name
-    setNickName(selectedInfo[NICK_NAME]);
+    let selectedPath;
 
     // set QR code url if info exist
-    let selectedPath;
     if (selectedInfo) {
+      // set nick name
+      setNickName(selectedInfo[NICK_NAME]);
+
       // set path from firstName-lastName
       selectedPath = `${selectedInfo[FIRST_NAME].toLocaleLowerCase()}-${selectedInfo[
         LAST_NAME
