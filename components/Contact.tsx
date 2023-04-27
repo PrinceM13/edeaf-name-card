@@ -22,12 +22,18 @@ export default function Contact({ children }: any) {
           <div>
             Email : <span className="font-mono text-xs">{children[EMAIL]}</span>
           </div>
-          {/* <div>Mobile : {children[MOBILE]}</div> */}
-          {/* <div>Line Id : {children[LINE_ID]}</div> */}
-          {/* <div>Facebook : {children[FACEBOOK]}</div> */}
           <div>
-            Instagram : <span className="font-mono text-xs">{children[INSTAGRAM]}</span>
+            Mobile : <span className="font-mono text-xs">{children[MOBILE]}</span>
           </div>
+          <div>
+            Line Id : <span className="font-mono text-xs">{children[LINE_ID]}</span>
+          </div>
+          {/* <div>
+            Facebook : <span className="font-mono text-xs">{children[FACEBOOK]}</span>
+          </div> */}
+          {/* <div>
+            Instagram : <span className="font-mono text-xs">{children[INSTAGRAM]}</span>
+          </div> */}
         </div>
       )}
     </>
