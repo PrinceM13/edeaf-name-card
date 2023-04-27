@@ -39,6 +39,7 @@ export default function NameCards() {
 
   const [email, setEmail] = useState("");
   const [qrUrl, setQrUrl] = useState("");
+  const [nickName, setNickName] = useState("");
 
   const handleGenerateQR = async (e: any) => {
     e.preventDefault();
@@ -47,6 +48,9 @@ export default function NameCards() {
     const [selectedInfo] = infos.filter(
       (el) => el[EMAIL].toLocaleLowerCase() === email.toLocaleLowerCase()
     );
+
+    // set nick name
+    setNickName(selectedInfo[NICK_NAME]);
 
     // set QR code url if info exist
     let selectedPath;
@@ -85,7 +89,10 @@ export default function NameCards() {
       {infos.length !== 0 && (
         <>
           {qrUrl ? (
-            <img src={qrUrl} className="rounded-lg" />
+            <>
+              <img src={qrUrl} className="rounded-lg" />
+              <div className="text-center text-3xl bg-[#cbe9f6] py-1 rounded-lg">{nickName}</div>
+            </>
           ) : (
             <form onSubmit={handleGenerateQR} className="flex flex-col font-mono text-xs gap-4">
               <input
