@@ -49,7 +49,8 @@ export default function SignName({ children, info }: any) {
     setDuration(result.info.duration);
   };
 
-  const cloudinaryVideo = new CloudinaryVideo("edeaf/name-card/frames/frame_8sec_mjvh7x", {
+  // const cloudinaryVideo = new CloudinaryVideo("edeaf/name-card/frames/frame_8sec_mjvh7x", {
+  const cloudinaryVideo = new CloudinaryVideo("edeaf/name-card/frames/thsl-frames-8s_dswymn", {
     apiKey,
     apiSecret,
     cloudName
@@ -58,14 +59,17 @@ export default function SignName({ children, info }: any) {
     .overlay(
       source(
         video(publicId).transformation(
+          // new Transformation().resize(fill().width(620).height(620)).roundCorners(byRadius(20))
           new Transformation().resize(fill().width(620).height(620)).roundCorners(byRadius(20))
-          // new Transformation().resize(scale().width(620).height(620)).roundCorners(byRadius(20))
+          // new Transformation().resize(scale().width(620).height(620)).roundCorners(byRadius(20)) // change ratio
         )
-      ).position(new Position().offsetY(-0.05).gravity(compass(center())))
+        // ).position(new Position().offsetY(-0.05).gravity(compass(center())))
+      ).position(new Position().offsetY(-0.02).gravity(compass(center())))
     )
     .overlay(
       source(text(children, "Itim_80").textColor("#5384ed")).position(
-        new Position().offsetY(0.3).gravity(compass(center()))
+        // new Position().offsetY(0.3).gravity(compass(center()))
+        new Position().offsetY(0.33).gravity(compass(center()))
       )
     )
     .format("mp4");
@@ -114,10 +118,12 @@ export default function SignName({ children, info }: any) {
       ) : (
         <>
           <img
-            src="https://res.cloudinary.com/dhr35jlbz/image/upload/v1681792641/edeaf/name-card/frames/edeaf-frame_k1y5kx.png"
+            // src="https://res.cloudinary.com/dhr35jlbz/image/upload/v1681792641/edeaf/name-card/frames/edeaf-frame_k1y5kx.png"
+            src="https://res.cloudinary.com/dhr35jlbz/image/upload/v1682781762/edeaf/name-card/frames/thsl-frame_iemevu.png"
             className="rounded-lg"
           />
-          <div className="absolute top-[75px] left-[44px] flex flex-col items-center">
+          {/* <div className="absolute top-[75px] left-[44px] flex flex-col items-center"> */}
+          <div className="absolute top-[85px] left-[44px] flex flex-col items-center gap-7">
             <div
               className="h-[200px] w-[200px] rounded-lg cursor-pointer"
               onClick={() => uploadButton.current?.click()}
@@ -127,7 +133,7 @@ export default function SignName({ children, info }: any) {
                 className="h-[200px] w-[200px] rounded-lg"
               />
             </div>
-            <div className="text-4xl text-[#5384ed] rounded-lg px-2">{children}</div>
+            <div className="text-3xl text-[#5384ed] rounded-lg px-2">{children}</div>
           </div>
         </>
       )}
